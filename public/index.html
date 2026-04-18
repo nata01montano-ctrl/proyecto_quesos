@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Buen Queso</title>
+</head>
+
+<body>
+  <div>
+    <h1>SQL Operations</h1>
+
+    <section>
+      <h2>Post Operation</h2>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="birthdate">Birthdate:</label><br>
+        <input type="date" id="birthdate" name="birthdate" required><br><br>
+
+        <button id="postBtn">Send</button>
+      <p id="postSqlResult"></p>
+    </section>
+
+    <section>
+      <h2>Get All Entries</h2>
+      <button id="getAllBtn">Get All</button>
+      <ul id="getAllResult"></ul>
+    </section>
+
+    <section>
+      <h2>Get Entry by ID</h2>
+        <label for="id">id:</label><br>
+        <input type="text" id="id" name="id" required><br><br>
+        <button id="getOneBtn">Send</button>
+      <ul id="getOneResult"></ul>
+    </section>
+  </div>
+
+  <script src="./js/sql.js"></script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>El Buen Qeso</title>
+</head>
+
+<body>
+
+<h1>EL BUEN QUESO</h1>
+
+
+<section>
+      <h2>Registrar Cliente</h2>
+        <label for="name">Nombre:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="business_name">Nombre del negocio:</label><br>
+        <input type="text" id="business_name" name="business_name" required><br><br>
+
+        <label for="address">Dirección:</label><br>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="phone">Teléfono:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <button id="postbtn">Guardar Cliente</button>
+      <p id="postSqlResult"></p>
+    </section>
+    <section>
+      <button id="getAllBtn">Ver Clientes</button>
+      <ul id="clientlist"></ul>
+    </section>
+</section>
+<section>
+      <h2>Registrar Producto</h2>
+        <label for="name">Nombre del producto:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="price">Precio:</label><br>
+        <input type="text" id="business_name" name="business_name" required><br><br>
+
+        <label for="address">Dirección:</label><br>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="phone">Teléfono:</label><br>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <label for="birthdate">Fecha de nacimiento:</label><br>
+        <input type="date" id="birthdate" name="birthdate" required><br><br>
+
+        <button id="postBtn">Guardar Cliente</button>
+      <p id="postSqlResult"></p>
+    </section>
+
+
+<hr>
+
+<h2>Registrar Producto</h2>
+
+<form id="formProducto">
+
+<input type="text" id="product_name" placeholder="Nombre del producto" required>
+
+<input type="number" id="price" placeholder="Precio">
+
+<input type="number" id="stock" placeholder="Stock">
+
+<button type="submit">Guardar Producto</button>
+
+</form>
+
+<br>
+
+<button onclick="verProductos()">Ver Productos</button>
+
+<ul id="listaProductos"></ul>
+
+
+
+</body>
+
+</body>
+</html>
