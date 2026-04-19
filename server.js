@@ -1,5 +1,5 @@
 const express = require("express");
-const testRoutes = require("./routes/customer.routes");
+const customerRoutes = require("./routes/customer.routes");
 
 const PORT = 5000;
 const api = express();
