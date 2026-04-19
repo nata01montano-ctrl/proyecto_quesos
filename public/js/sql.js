@@ -1,7 +1,9 @@
 // Post Elements
 const postButton = document.getElementById("postBtn");
 const nameInput = document.getElementById("name");
-const dateInput = document.getElementById("birthdate");
+const dateInput = document.getElementById("business_name");
+const addressInput = document.getElementById("address");
+const phoneInput = document.getElementById("phone");
 
 //Get Elements
 const getAllButton = document.getElementById("getAllBtn");
@@ -11,11 +13,13 @@ const getOneButton = document.getElementById("getOneBtn");
 postButton.addEventListener('click', async function () {
     const data = {
         name: nameInput.value,
-        birthdate: dateInput.value
+        business_name: dateInput.value,
+        address: addressInput.value,
+        phone: phoneInput.value
     };
 
     try {
-        const response = await fetch('/test', {
+        const response = await fetch('/customer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,7 +38,7 @@ postButton.addEventListener('click', async function () {
 
 getAllButton.addEventListener('click', async function () {
     try {
-        const response = await fetch('/test');
+        const response = await fetch('/customer');
         const data = await response.json();
 
         const list = document.getElementById('getAllResult');
@@ -60,7 +64,7 @@ getAllButton.addEventListener('click', async function () {
 getOneButton.addEventListener('click', async function () {
     const id = idInput.value;
     try {
-        const response = await fetch(`/test/${id}`);
+        const response = await fetch(`/customer/${id}`);
         const data = await response.json();
         const resultContainer = document.getElementById('getOneResult');
         resultContainer.innerHTML = '';

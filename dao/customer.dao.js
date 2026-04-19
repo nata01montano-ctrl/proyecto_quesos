@@ -24,15 +24,15 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { name, birthdate } = req.body;
-    if(!name || !birthdate){
+    const { name, business_name, address, phone } = req.body;
+    if(!name || !business_name || !address || !phone) {
         res.status(400).json({ error: "Bad Request" });
     }
     const [result] = await db.query(
-      'INSERT INTO customer (name, birthdate) VALUES (?, ?)',
-      [name, birthdate]
+      'INSERT INTO customer (name, business_name, address, phone) VALUES (?, ?, ?, ?)',
+      [name, business_name, address, phone]
     );
-    res.status(201).json({ id: result.insertId, name, birthdate });
+    res.status(201).json({ id: result.insertId, name, business_name, address, phone });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
