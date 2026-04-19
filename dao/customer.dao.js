@@ -37,5 +37,35 @@ const create = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+const update = async (req, res) => {
+  try {
+    const { name, business_name, address, phone } = req.body;
 
-module.exports = { getAll, getById, create };
+    const [result] = await db.query(
+      'UPDATE customer SET name=?, business_name=?, address=?, phone=? WHERE id=?',
+      [name, business_name, address, phone, req.params.id]
+    );
+
+    res.json({ message: "Cliente actualizado" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+const remove = async (req, res) => {
+  try {
+
+    await db.query(
+      'DELETE FROM customer WHERE id=?',
+      [req.params.id]
+    );
+
+    res.json({ message: "Cliente eliminado" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { getAll, getById, create, update, remove };
