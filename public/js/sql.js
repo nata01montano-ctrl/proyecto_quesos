@@ -19,7 +19,7 @@ postButton.addEventListener('click', async function () {
     };
 
     try {
-        const response = await fetch('/el_buen_queso', {
+        const response = await fetch('/customers', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ postButton.addEventListener('click', async function () {
 
 getAllButton.addEventListener('click', async function () {
     try {
-        const response = await fetch('/el_buen_queso');
+        const response = await fetch('/customers');
         const data = await response.json();
 
         const list = document.getElementById('getAllResult');
@@ -64,7 +64,7 @@ getAllButton.addEventListener('click', async function () {
 getOneButton.addEventListener('click', async function () {
     const id = idInput.value;
     try {
-        const response = await fetch(`/el_buen_queso/${id}`);
+        const response = await fetch(`/customers/${id}`);
         const data = await response.json();
         const resultContainer = document.getElementById('getOneResult');
         resultContainer.innerHTML = '';
