@@ -2,7 +2,7 @@ const db = require('../services/mysql.service');
 
 const getAll = async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM product');
+    const [rows] = await db.query('SELECT * FROM payment');
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const [rows] = await db.query(
-      'SELECT * FROM product WHERE idproduct = ?',
+      'SELECT * FROM payment WHERE idcredit = ?',
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
@@ -24,29 +24,29 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { name, price, stock } = req.body;
-    if(!name || !price || !stock) {
+    const { credit_amount, payment_deadline, credit_status, } = req.body;
+    if(!credit_amount || !payment_deadline || !credit_status) {
         res.status(400).json({ error: "Bad Request" });
     }
     const [result] = await db.query(
-      'INSERT INTO product (name, price, stock) VALUES (?, ?, ?)',
-      [name, price, stock]
+      'INSERT INTO payment (credit_amount , payment_deadline, credit_status) VALUES (?, ?, ?, ?)',
+      [credit_amount, payment_deadline, credit_status]
     );
-    res.status(201).json({ id: result.insertId, name, price, stock });
+    res.status(201).json({ id: result.insertId, credit_amount, payment_deadline, credit_status });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 const update = async (req, res) => {
   try {
-    const { name, price, stock } = req.body;
+    const { credit_amount, payment_deadline, credit_status } = req.body;
 
     const [result] = await db.query(
-      'UPDATE product SET name=?, price=?, stock=? WHERE idproduct=?',
-      [name, price, stock, req.params.id]
+      'UPDATE payment SET credit_amount=?, payment_deadline=?, credit_status=?, phone=? WHERE idcredit=?',
+      [credit_amount, payment_deadline, credit_status, req.params.id]
     );
 
-    res.json({ message: "product actualizado" });
+    res.json({ message: "Crédito actualizado" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -57,11 +57,11 @@ const remove = async (req, res) => {
   try {
 
     await db.query(
-      'DELETE FROM product WHERE id=?',
+      'DELETE FROM customer WHERE id=?',
       [req.params.id]
     );
 
-    res.json({ message: "product eliminado" });
+    res.json({ message: "Pago eliminado" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });

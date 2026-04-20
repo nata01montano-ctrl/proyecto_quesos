@@ -51,3 +51,4 @@ CREATE TABLE payment (
     FOREIGN KEY (credit_idcredit)
     REFERENCES credit(idcredit)
 );
+SELECT user, host FROM mysql.user;

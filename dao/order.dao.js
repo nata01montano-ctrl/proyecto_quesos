@@ -2,7 +2,7 @@ const db = require('../services/mysql.service');
 
 const getAll = async (req, res) => {
   try {
-    const [rows] = await db.query('SELECT * FROM product');
+    const [rows] = await db.query('SELECT * FROM customer');
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const [rows] = await db.query(
-      'SELECT * FROM product WHERE idproduct = ?',
+      'SELECT * FROM customer WHERE idorder = ?',
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
@@ -24,29 +24,29 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { name, price, stock } = req.body;
-    if(!name || !price || !stock) {
+    const { order_date, total, quantity } = req.body;
+    if(!order_date || !total || !quantity) {
         res.status(400).json({ error: "Bad Request" });
     }
     const [result] = await db.query(
-      'INSERT INTO product (name, price, stock) VALUES (?, ?, ?)',
-      [name, price, stock]
+      'INSERT INTO customer (order_date, total, quantity) VALUES (?, ?, ?)',
+      [order_date, total, quantity]
     );
-    res.status(201).json({ id: result.insertId, name, price, stock });
+    res.status(201).json({ id: result.insertId, order_date, total, quantity });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 const update = async (req, res) => {
   try {
-    const { name, price, stock } = req.body;
+    const { order_date, total, quantity,   } = req.body;
 
     const [result] = await db.query(
-      'UPDATE product SET name=?, price=?, stock=? WHERE idproduct=?',
-      [name, price, stock, req.params.id]
+      'UPDATE customer SET order_date=?, total=?, quantity=? WHERE idorder=?',
+      [order_date, total, quantity, req.params.id]
     );
 
-    res.json({ message: "product actualizado" });
+    res.json({ message: "Pedido actualizado" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -57,11 +57,11 @@ const remove = async (req, res) => {
   try {
 
     await db.query(
-      'DELETE FROM product WHERE id=?',
+      'DELETE FROM customer WHERE idcustomer = ?',
       [req.params.id]
     );
 
-    res.json({ message: "product eliminado" });
+    res.json({ message: "Pedido eliminado" });
 
   } catch (err) {
     res.status(500).json({ error: err.message });

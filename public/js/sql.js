@@ -21,10 +21,11 @@ postButton.addEventListener('click', async function () {
     try {
         const response = await fetch('/customer', {
             method: 'POST',
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
+            
         });
 
         const message = await response.text();

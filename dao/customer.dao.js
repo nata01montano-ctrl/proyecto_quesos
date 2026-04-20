@@ -12,7 +12,7 @@ const getAll = async (req, res) => {
 const getById = async (req, res) => {
   try {
     const [rows] = await db.query(
-      'SELECT * FROM customer WHERE id = ?',
+      'SELECT * FROM customer WHERE idcustomer = ?',
       [req.params.id]
     );
     if (!rows[0]) return res.status(404).json({ error: 'No encontrado' });
@@ -57,7 +57,7 @@ const remove = async (req, res) => {
   try {
 
     await db.query(
-      'DELETE FROM customer WHERE id=?',
+      'DELETE FROM customer WHERE idcustomer = ?',
       [req.params.id]
     );
 
