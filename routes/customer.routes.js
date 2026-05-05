@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const productDao = require("../dao/product.dao")
+const customerDao = require("../dao/customer.dao")
 
-router.get('/', productDao.getAll);
-router.get('/:id', productDao.getById);
-router.post('/', productDao.create);
-router.put('/:id', productDao.update);
-router.delete('/:id', productDao.remove);
+router.get('/', customerDao.getAll);
+router.get('/:id', customerDao.getById);
+router.post('/', customerDao.create);
+router.put('/:id', customerDao.update);
+router.delete('/:id', customerDao.remove);
 
 module.exports = router;

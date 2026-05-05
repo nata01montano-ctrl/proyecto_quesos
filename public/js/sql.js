@@ -1,5 +1,5 @@
 // Post Elements
-const postButton = document.getElementById("postBtn");
+const postButton = document.getElementById("postclientBtn");
 const nameInput = document.getElementById("name");
 const dateInput = document.getElementById("business_name");
 const addressInput = document.getElementById("address");
@@ -17,7 +17,7 @@ postButton.addEventListener('click', async function () {
         address: addressInput.value,
         phone: phoneInput.value
     };
-
+console.log(data);
     try {
         const response = await fetch('/customer', {
             method: 'POST',
@@ -61,7 +61,7 @@ getAllButton.addEventListener('click', async function () {
         document.getElementById('getAllResult').innerHTML = '<li>Error obtaining info.</li>';
     }
 });
-
+/*
 getOneButton.addEventListener('click', async function () {
     const id = idInput.value;
     try {
@@ -85,4 +85,4 @@ getOneButton.addEventListener('click', async function () {
         console.error('Error getting data:', error);
         document.getElementById('getOneResult').innerHTML = '<li>Error</li>';
     }
-});
+});*/

@@ -2,7 +2,7 @@ const config = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'negocio'
+    database: 'negocio'   
 };
 
 module.exports = config;
